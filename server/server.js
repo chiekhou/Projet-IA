@@ -14,7 +14,7 @@ app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
 
-db.sequelize.sync().then(() => {
+db.sequelize.sync( {force:true}).then(() => {
   console.log('synced db.');
 }).catch((err) => {
   console.log('Failed to sync db: ' + err.message);

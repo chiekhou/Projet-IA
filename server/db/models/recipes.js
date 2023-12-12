@@ -12,6 +12,7 @@ const {
         Recipes.hasMany(models.Commentaires, { foreignKey: 'recipeId' });
         Recipes.hasMany(models.Evaluation, { foreignKey: 'recipeId' });
         Recipes.hasMany(models.Recommandations, { foreignKey: 'recipeId' });
+        Recipes.hasMany(models.Ingredients, { foreignKey: 'recipeId' });
       }
     }
     Recipes.init({
