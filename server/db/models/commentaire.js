@@ -10,6 +10,7 @@ const {
        */
       static associate(models) {
         // define association here
+        Commentaires.belongsTo(models.CommentaireUserRecipes, { foreignKey: 'userRecipeId' });
       }
     }
     Commentaires.init({
@@ -18,10 +19,9 @@ const {
             primaryKey: true,
             autoIncrement: true,
         },
-      contenue: DataTypes.STRING,
-      date: DataTypes.DATE,
-      difficulte : DataTypes.STRING,
+      contenue: DataTypes.TEXT,
       note : DataTypes.INTEGER,
+      date: DataTypes.DATE,
     }, {
       sequelize,
       modelName: 'Commentaires',

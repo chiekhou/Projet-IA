@@ -1,3 +1,4 @@
+const { fa } = require('faker/lib/locales');
 const {
     Model
   } = require('sequelize');
@@ -9,10 +10,7 @@ const {
        * The `models/index` file will call this method automatically.
        */
       static associate(models) {
-        Recipes.hasMany(models.Commentaires, { foreignKey: 'recipeId' });
-        Recipes.hasMany(models.Evaluation, { foreignKey: 'recipeId' });
-        Recipes.hasMany(models.Recommandations, { foreignKey: 'recipeId' });
-        Recipes.hasMany(models.Ingredients, { foreignKey: 'recipeId' });
+        Recipes.hasMany(models.Quantite, { foreignKey: 'recipeId' });
       }
     }
     Recipes.init({
@@ -22,12 +20,15 @@ const {
             autoIncrement: true,
         },
       recipeName: DataTypes.STRING,
-      description: DataTypes.STRING,
-      instructionCuisson: DataTypes.STRING,
-      ingredients: DataTypes.STRING,
-      timePreparation: DataTypes.INTEGER,
-      difficulte : DataTypes.STRING,
-      note : DataTypes.INTEGER,
+      description: DataTypes.TEXT,
+      difficulte :{ 
+        type: DataTypes.INTEGER,
+        defaultValue : 0
+      },
+      liked :{ 
+        type: DataTypes.BOOLEAN,
+        defaultValue : false,
+      }
     }, {
       sequelize,
       modelName: 'Recipes',
