@@ -11,6 +11,7 @@ const {
        */
       static associate(models) {
         Recipes.hasMany(models.Quantite, { foreignKey: 'recipeId' });
+        Recipes.hasMany(models.Ratings, { foreignKey: 'recipeId' });
       }
     }
     Recipes.init({

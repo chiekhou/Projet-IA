@@ -1,0 +1,31 @@
+
+.ratingAndReview {
+    // Styles spécifiques pour le conteneur du composant RatingAndReview
+  }
+  
+  .remove {
+    // Styles spécifiques pour l'animation de suppression
+  }
+  
+  @keyframes appear {
+    from {
+      transform: translateY(100%);
+    }
+  
+    to {
+      transform: translateY(0%);
+    }
+  }
+  
+  @keyframes disappear {
+    from {
+      transform: translateY(0%);
+    }
+  
+    to {
+      transform: translateY(100%);
+    }
+  }
+  
+  /* Ajoutez d'autres styles selon vos besoins */
+  

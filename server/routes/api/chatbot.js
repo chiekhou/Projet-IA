@@ -1,27 +1,15 @@
-const express = require('express')
-const cookie = require('cookie-parser')
-const dotenv = require("dotenv");
+const express = require('express');
+const router = express.Router();
 const fetch = require('node-fetch');
+const dotenv = require('dotenv');
+const { authenticateUser } = require('../../middleware'); // Ajoutez votre middleware d'authentification si nécessaire
 dotenv.config();
 
-const app = express()
-const routes = require('./routes')
-
-app.use(cookie())
-app.use(express.json())
-const port = 5000
-
-const db = require('./db/models/index');
-
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
-
-app.post('/chatbot', async (req, res) => {
+// Endpoint pour gérer les messages vers le chatbot
+router.post('/messages', authenticateUser, async (req, res) => {
   try {
     const { input } = req.body;
-    
-    
+
     const apiKey = process.env.OPENAI_API_KEY || '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';
     const apiUrl = 'https://api.openai.com/v1/engines/davinci-codex/completions';
 
@@ -33,7 +21,7 @@ app.post('/chatbot', async (req, res) => {
       },
       body: JSON.stringify({
         prompt: input,
-        max_tokens: 50,  // Limite la longueur de la réponse générée
+        max_tokens: 50,
       }),
     });
 
@@ -45,18 +33,6 @@ app.post('/chatbot', async (req, res) => {
   }
 });
 
-app.use(routes)
-app.use('*', (req,res) => {
-  res.status(404).end()
-})
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
 
-db.sequelize.sync().then(() => {
-  console.log('synced db.');
-}).catch((err) => {
-  console.log('Failed to sync db: ' + err.message);
-})
-
+module.exports = router;

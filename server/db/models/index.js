@@ -10,6 +10,8 @@ const quantite = require("./quantite");
 const commentaire = require("./commentaire");
 const usersRecipes = require("./user-recipe");
 const commentaireUsersRecipes = require("./commentaireUserRecipes");
+const ratings = require("./ratings"); 
+const chatbot = require('./chatbot');
 
 const db = {};
 
@@ -35,7 +37,9 @@ const modelExports = [
   ingredients,
   preference,
   quantite,
-  commentaireUsersRecipes
+  commentaireUsersRecipes,
+  ratings,
+  chatbot,
 ];
 
 modelExports.forEach((exportedModel) => {
