@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './Chatbot/Chatbot.module.scss';
+import styles from "../Chatbot/Chatbot.module.scss";
 
 const Chatbot = () => {
   const [messages, setMessages] = useState([]);
@@ -12,9 +12,9 @@ const Chatbot = () => {
 
   const handleSendMessage = async () => {
     try {
-      const apiKey = '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';  
+      const apiKey = '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';
       const apiUrl = 'https://api.openai.com/v1/engines/davinci-codex/completions';
-
+  
       const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
@@ -29,13 +29,20 @@ const Chatbot = () => {
           max_tokens: 50,  // Limite la longueur de la réponse générée
         }),
       });
-
+  
       const responseData = await response.json();
-      setResponse(responseData.choices[0].message.content);
+  
+      if (responseData && responseData.choices && responseData.choices.length > 0) {
+        setResponse(responseData.choices[0].message.content);
+      } else {
+        setResponse('Aucune réponse disponible.');
+      }
+  
     } catch (error) {
       console.error('Erreur lors de la requête à l\'API GPT-3.5:', error);
     }
   };
+  
 
   return (
     <div>

@@ -22,7 +22,7 @@ app.post('/chatbot', async (req, res) => {
     const { input } = req.body;
     
     
-    const apiKey = process.env.OPENAI_API_KEY || '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';
+    const apiKey = process.env.OPENAI_API_KEY || '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';
     const apiUrl = 'https://api.openai.com/v1/engines/davinci-codex/completions';
 
     const response = await fetch(apiUrl, {
@@ -54,7 +54,7 @@ app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
 
-db.sequelize.sync().then(() => {
+db.sequelize.sync({force:true}).then(() => {
   console.log('synced db.');
 }).catch((err) => {
   console.log('Failed to sync db: ' + err.message);

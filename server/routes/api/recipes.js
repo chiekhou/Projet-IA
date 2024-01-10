@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const authMiddleware = require('../../middleware');
 const { Sequelize } = require("sequelize");
-const {Recipes , SaveRecipes} = require('../../db/models')
+const {Recipes , UsersRecipes} = require('../../db/models')
 const OpenAI = require("openai");
 const openai = new OpenAI();
 
@@ -53,7 +53,7 @@ router.patch('/:id_recipe',authMiddleware, async (req, res) => {
       return;
     }
      // Check if the user has already liked the recipe
-  const existingLike = await SaveRecipes.findOne({
+  const existingLike = await UsersRecipes.findOne({
     where: {
       userId: id_user,
       recipeId: id_recipe,
@@ -62,7 +62,7 @@ router.patch('/:id_recipe',authMiddleware, async (req, res) => {
 
   if (liked && !existingLike) {
     // If the user liked the recipe and there's no existing record, create one
-    await SaveRecipes.create({
+    await UsersRecipes.create({
       userId : id_user,
       recipeId: id_recipe,
     });
@@ -94,7 +94,7 @@ router.get('/likeUser', authMiddleware, async (req, res) => {
   const { id_user } = req.user;
 
   try {
-  const userLikeFav = await SaveRecipes.findAll({
+  const userLikeFav = await UsersRecipes.findAll({
     where: {
       userId: id_user,
     },

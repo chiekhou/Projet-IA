@@ -8,6 +8,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Users.hasOne(models.Preferences, { foreignKey: 'userId' });
+      Users.hasOne(models.Chatbot, { foreignKey: 'userId' });
+
     }
   }
   Users.init({

@@ -1,16 +1,15 @@
-const express = require('express');
-const router = express.Router();
+const router = require('express').Router();
 const fetch = require('node-fetch');
 const dotenv = require('dotenv');
-const { authenticateUser } = require('../../middleware'); // Ajoutez votre middleware d'authentification si nécessaire
+const  authenticateUser = require('../../middleware'); 
 dotenv.config();
 
 // Endpoint pour gérer les messages vers le chatbot
-router.post('/messages', authenticateUser, async (req, res) => {
+router.post('/messages',authenticateUser, async (req, res) => {
   try {
     const { input } = req.body;
 
-    const apiKey = process.env.OPENAI_API_KEY || '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';
+    const apiKey = process.env.OPENAI_API_KEY || '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';
     const apiUrl = 'https://api.openai.com/v1/engines/davinci-codex/completions';
 
     const response = await fetch(apiUrl, {

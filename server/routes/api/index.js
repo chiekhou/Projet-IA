@@ -6,7 +6,7 @@ const apiIngredients = require('./ingredients');
 const apiCommentaire = require('./commentaires');
 const apiPreference = require('./preferences');
 const apiQuantite = require('./quantite');
-const apiRating = require('./rating'); 
+const apiRating = require('./ratings'); 
 const apiChatbot = require('./chatbot'); 
 const apiAccompaniments = require('./accompaniments');
 
@@ -17,7 +17,7 @@ router.use('/ingredient', apiIngredients);
 router.use('/quantite', apiQuantite);
 router.use('/commentaires', apiCommentaire);
 router.use('/preferences', apiPreference);
-router.use('/rating', apiRating); 
+router.use('/ratings', apiRating); 
 router.use('/chatbot', apiChatbot); 
 router.use('/accompaniments', apiAccompaniments);
 

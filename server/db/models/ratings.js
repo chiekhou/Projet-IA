@@ -29,6 +29,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT,
       allowNull: true,
     },
+  }, {
+    sequelize,
+    modelName: 'Ratings',
   });
 
   return Ratings;

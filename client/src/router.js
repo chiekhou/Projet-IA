@@ -4,7 +4,11 @@ import { rootLoader } from './loaders/rootLoader';
 import { getRecipe } from "./apis";
 import App from "./App";
 import ProtectedRoute from "./components/ProtectedRoute.js/ProtectedRoute";
+import Chatbot from "./components/Chatbot/Chatbot";
+import RatingAndReview from "./components/RatingAndReview/RatingAndReview";
 
+// Importez le composant RecipeDetails pour afficher les détails d'une recette
+// const RecipeDetails = lazy(() => import("./pages/RecipeDetails/RecipeDetails"));
 
 const Homepage = lazy(() => import("./pages/Homepage/Homepage"));
 const Login = lazy(() => import("./pages/Login/Login"));
@@ -38,7 +42,12 @@ const AdminRecipesForm = lazy(() =>
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: (
+      <>
+        <App />
+        <Chatbot /> 
+      </>
+    ),
     loader: rootLoader,
     children: [
       {
@@ -83,7 +92,6 @@ export const router = createBrowserRouter([
               },
               {
                 path: "edit/:preferenceId",
-                // loader: async ({ params: { preferenceId } }) => getPreference( preferenceId ),
                 element: <UserPreferenceForm />,
               },
             ],
@@ -132,6 +140,14 @@ export const router = createBrowserRouter([
           },
         ],
       },
+      {
+        path: "recipe/:recipeId",
+        element: (
+          <ProtectedRoute>
+            <RatingAndReview />
+          </ProtectedRoute>
+        ),
+      },      
     ],
   },
 ]);

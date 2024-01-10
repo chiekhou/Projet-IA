@@ -3,7 +3,7 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Chatbot extends Model {
     static associate(models) {
-        Chatbot.belongsTo(models.User);
+       
     }
   }
 
