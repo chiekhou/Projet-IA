@@ -5,7 +5,7 @@ function Footer() {
     <footer
       className={`${styles.footer} d-flex flex-row align-items-center justify-content-center p-20`}
     >
-      <p>Copyright © 2022 Cookchef Dyma, Inc.</p>
+      <p>Copyright © 2023 Projet-IA ESGI.</p>
     </footer>
   );
 }

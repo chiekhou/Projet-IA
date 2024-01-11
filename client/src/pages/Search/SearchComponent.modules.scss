@@ -1,0 +1,20 @@
+.searchBar {
+    padding: 10px 15px;
+    border: 2px solid var(--gray-2);
+    border-radius: 20px;
+    input {
+      outline: 0;
+      border: 0;
+    }
+  }
+
+  .contentCard {
+    max-width: 1130px;
+    width: 100%;
+
+  }
+
+ #text {
+    color: black; /* Nouvelle couleur de texte */
+    border: 2px solid blue; 
+  }

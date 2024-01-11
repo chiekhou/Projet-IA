@@ -33,7 +33,7 @@ async function seedUsers() {
 async function seedRecipes() {
   try {
       // Insérer plusieurs utilisateurs fictifs
-      const numberOfRecettes = 100; 
+      const numberOfRecettes = 10; 
 
       for (let i = 0; i < numberOfRecettes; i++) {
       const recipe = generateRecipe();
@@ -54,7 +54,7 @@ async function seedRecipes() {
 async function seedIngredients() {
   try {
       // Insérer plusieurs utilisateurs fictifs
-      const numberOfIngredients = 100; 
+      const numberOfIngredients = 10; 
 
       for (let i = 0; i < numberOfIngredients ; i++) {
       const ingredient = generateIngredient();
