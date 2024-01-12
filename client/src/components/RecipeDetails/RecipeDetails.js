@@ -15,6 +15,7 @@ const RecipeDetails = ({ recipe, checkExistingRating, updateRating, createRating
   };
 
   const handleAddRating = async () => {
+    
     try {
         if (!recipe || !recipe.id) {
           console.error('La recette est mal définie ou ne possède pas de propriété "id".');
