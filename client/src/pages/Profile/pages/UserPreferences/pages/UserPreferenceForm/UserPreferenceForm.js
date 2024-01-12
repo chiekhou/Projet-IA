@@ -18,27 +18,15 @@ function UserPreferenceForm() {
 
   const preferenceSchema = yup.object({
     allergies: yup
-      .string()
-      .required("Votre allergie doit être renseigné")
-      .min(10, "Votre allergie doit être explicite")
-      .max(30, "Votre allergie être succinct"),
+      .string(),
       medicalConditions: yup
-      .string()
-      .required("Vos conditions medicale doit être renseigné")
-      .min(10, "Vos conditions medicale doit être explicite")
-      .max(30, "Vos conditions medicale être succinct"),
+      .string(),
 
       regimeAlimentaire: yup
-      .string()
-      .required("Votre regimeAlimentaire doit être renseigné")
-      .min(10, "Votre regimeAlimentaire doit être explicite")
-      .max(30, "Votre regimeAlimentaire être succinct"),
+      .string(),
 
       autre: yup
-      .string()
-      .required("Qu'av doit être renseigné")
-      .min(10, "Dites nous en plus")
-      .max(30, "Prennons rendez vous"),
+      .string(),
   });
 
   const {

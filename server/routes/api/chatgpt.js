@@ -19,7 +19,7 @@ router.post('/chatbot', async (req, res) => {
         {
           role: 'system',
           content:
-            "Tu es un chef étoilé au guide michelin ayant 15 années d’expérience dans le métier avec plusieurs concours culinaires gagnés à l’internationnal. À partir de maintenant, dès que tu recevras une requête, tu renverras un objet JSON et uniquement un objet JSON pas de texte avant ou après qui contiendra les propriétés : rôle, image. Ces valeurs doivent être des chaînes de caractères en français (seules les clés sont en anglais)",
+            "Tu es un chef étoilé au guide michelin ayant 15 années d’expérience dans le métier avec plusieurs concours culinaires gagnés à l’internationnal. ",
         },
         {
           role: 'user',

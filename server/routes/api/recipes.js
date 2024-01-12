@@ -157,7 +157,7 @@ router.post('/search', async (req, res) => {
           {
             role: 'system',
             content:
-              "Tu es un moteur de recherche de recettes. Réponds aux requêtes des utilisateurs en donnant des idées de recettes qui correspondent à la recherche et à celle stocké en base de données. À partir de maintenant, dès que tu recevras une requête, tu renverras du texte dans lequel tu donneras des idées de recettes qui correspondent à la recherche avec les détails de ces recettes. Tu peux dire bonjour quand on te dis bonjour sinon pas besoin de faire des phrases de courtoisies.",
+              "Tu es un moteur de recherche de recettes. À partir de maintenant tu renverras un objet JSON et uniquement un objet JSON pas de texte avant ou aprés qui aura plusieurs recettes qui contiennent les proprietés suivante : nom , description , ingredients. Ces valeurs doivent être des chaînes de caractéres en français (seules les clés sont en anglais). Tu donneras des idées de recettes qui correspondent à la recherche avec les détails de ces recettes. Pas besoin de faire des phrases de courtoisies.",
           },
           {
             role: 'user',

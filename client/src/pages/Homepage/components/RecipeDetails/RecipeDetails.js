@@ -1,6 +1,7 @@
 import { useEffect , useState } from 'react';
 import {useLocation } from "react-router-dom";
 import {getRecipe } from "../../../../apis"
+import {Accordion} from 'react-bootstrap';
 import styles from "../RecipeDetails/RecipeDetails.module.scss"
 
 const RecipeDetails = () => {
@@ -62,45 +63,53 @@ const RecipeDetails = () => {
   
     return(
         <>  
-        <div  className ={`card ${styles.recipe}`}>
-        {/* <div className={styles.imageContainer}>
-          <img src={recipe.image} alt="recipe" />
-        </div> */}
-        <div
-          className={`d-flex flex-column justify-content-center align-items-center`}
-        >
-          <h3 className="mb-10">{recipe.recipeName}</h3>
+      <div className="flex-fill container d-flex flex-column p-20">
+    <div
+        className={`card flex-fill d-flex flex-column p-20 mb-20 `}
+      >
+   <h3 className="mb-10">{recipe.recipeName}</h3>
+<Accordion  defaultActiveKey="0">
+          <Accordion.Item eventKey="0">
+            <Accordion.Header>Détails de la recette</Accordion.Header>
+            <Accordion.Body>
           
-          <p className="mb-10">{recipe.description}</p>
-         
-          <i 
-            className={`${styles.recipeName} fa-solid fa-heart ${recipe.liked ? "text-primary" : ""}`}
-          ></i>
-         
+            {recipe.description}<br/>
+            </Accordion.Body>
+          </Accordion.Item>
+
+          <Accordion.Item eventKey="1">
+            <Accordion.Header>Difficulté</Accordion.Header>
+            <Accordion.Body>
+          
+           La difficulté pour faire cette recette est de {recipe.difficulte} .
+            </Accordion.Body>
+          </Accordion.Item>
+      </Accordion>
+           
         </div>
       </div>
+      <div className={`${styles.test}`}>
+        
+        {recommendations && recommendations[0].recommandations.map((recommendation, index) => (
+          
+     <div className={`${styles.contentCardRecommandation}`}>
+      <div className={`${styles.grid}`}>
+     <div key={index} className={`card ${styles.recipeRecommandation}`}>
+     <div className="recipe-details">
+       <h3>{recommendation.recipeName}</h3>
+       <p>{recommendation.description}</p>
+     </div>
+     <img src={recommendation.image} alt="recipe" className="recipe-image" />
+   </div>
+   </div>
+   </div>
+        ))}
+    
+    </div>
 
       <div>
-    
       
-        <div className={`${styles.test}`}>
-        
-          {recommendations && recommendations[0].recommandations.map((recommendation, index) => (
-            
-       <div className={`${styles.contentCardRecommandation}`}>
-        <div className={`${styles.grid}`}>
-       <div key={index} className={`card ${styles.recipeRecommandation}`}>
-       <div className="recipe-details">
-         <h3>{recommendation.recipeName}</h3>
-         <p>{recommendation.description}</p>
-       </div>
-       <img src={recommendation.image} alt="recipe" className="recipe-image" />
-     </div>
-     </div>
-     </div>
-          ))}
-      
-      </div></div>
+      </div>
       </>
     )
 };

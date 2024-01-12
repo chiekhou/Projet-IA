@@ -1,10 +1,11 @@
 import styles from "./Recipe.module.scss";
+import {data} from "../../../../apis/image"
 import { useContext } from "react";
 import { Link ,useNavigate} from "react-router-dom";
 import { AuthContext } from "../../../../context"
 
 function Recipe({ recipe, updateRecipe, deleteRecipe }) {
-  
+
   const {user} = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -28,16 +29,15 @@ function Recipe({ recipe, updateRecipe, deleteRecipe }) {
   return (
     <div  className={styles.recipe}>
       <i onClick={handleClickDelete} className="fa-solid fa-xmark"></i>
-      {/* <div className={styles.imageContainer}>
-        <img src={recipe.image} alt="recipe" />
-      </div> */}
+      <div onClick={handleClickRecipeDetails} className={styles.imageContainer}>
+      <img src={data[recipe.id_recipe - 1].image} alt={`Image ${recipe.id_recipe}`} />
+      </div>
       <div
         className={`d-flex flex-column justify-content-center align-items-center`}
       >
-        <h3 className="mb-10">{recipe.recipeName}</h3>
-        <Link>
-        <h3 onClick={handleClickRecipeDetails}  className="mb-10">{recipe.description}</h3>
-        </Link>
+         
+        <h3  className="mb-10">{recipe.recipeName}</h3>
+  
         {user ? (
         <i onClick={handleClickLike} 
           className={`${styles.recipeName} fa-solid fa-heart ${recipe.liked ? "text-primary" : ""}`}

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
+import {Accordion} from 'react-bootstrap';
 import styles from "./SearchComponent.modules.scss";
 
 const SearchComponent = () => {
   const [recipeName, setRecipeName] = useState('');
-  const [ideas, setIdeas] = useState([]);
+  const [ideas, setIdeas] = useState(null);
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
-
 
   const handleSearch = async () => {
     try {
@@ -26,9 +26,14 @@ const SearchComponent = () => {
 
         if(data.ideas.length > 0) {
           console.log(data.ideas)
-          setIdeas(data.ideas);
+
+          const parseObject = data.ideas.map(jsonRecipe => JSON.parse(jsonRecipe))
+          console.log(parseObject)
+          const validRecommendations = parseObject.filter(recettes => recettes  !== null);
+          console.log(validRecommendations)
+          setIdeas(validRecommendations);
         } else {
-          setIdeas(["Aucune recette avec ce nom"]);
+          setIdeas([{ recettes: [] }]);
         }
       
       } else {
@@ -44,6 +49,7 @@ const SearchComponent = () => {
 
   return (
 
+    <>
     <div className="flex-fill container d-flex flex-column p-20">
     <div
         className={`card flex-fill d-flex flex-column p-20 mb-20 ${styles.contentCard}`}
@@ -67,16 +73,27 @@ const SearchComponent = () => {
         </button>
       </div>
       {error && <p className={styles.errorText}>{error}</p>}
-      <ul>
-        {ideas.map((idea, index) => (
-          <li key={index} className={`custom-idea`} >
-            <p id="text">{idea}</p>
-            </li>
+      <Accordion  defaultActiveKey="0">
+        {ideas && ideas[0].recettes.map((recette, index) => (
+          <Accordion.Item key={index} eventKey="0">
+            <Accordion.Header><h2>{recette.nom}</h2></Accordion.Header>
+            <Accordion.Body>
+          
+            {recette.description}<br/>
+
+            Voici les ingrédients qu'il faut :<br/>{recette.ingredients}
+            </Accordion.Body>
+          </Accordion.Item>
+           
         ))}
-      </ul>
+      </Accordion>
   
     </div>
     </div>
+
+</>
+
+    
   );
 };
 

@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../context";
 import {useSetRecoilState } from 'recoil'
 import { chatDisplayState, listDisplayState } from "../../state";
+import cookchef from "../../assets/images/cookchef.png";
 
 function Header() {
   const { user , signout } = useContext(AuthContext);
@@ -18,19 +19,26 @@ function Header() {
       <div className="flex-fill">
     
         <NavLink to="/">
-       Projet-IA
+        <img
+            src={cookchef}
+            alt="logo cookchef"
+          />
         </NavLink>
       </div>
+
+      <ul className={styles.headerList}>
       <NavLink to="search" className="mr-15 btn btn-reverse-primary">
            
-            <i className="fa-solid fa-magnifying-glass "> Search</i>
+            <i className="fa-solid fa-magnifying-glass "></i>
+            <span>Search</span>
           </NavLink>
 
           <button onClick={() => setChatDisplay(true) } className="mr-15 btn btn-reverse-primary">
-           
-            Chat
+          <i class="fa-solid fa-robot mr-2"></i>
+          <span>Chat</span>
+         
          </button>
-
+         </ul>
       {user ? (
         <ul className={styles.headerList}>
            <button onClick={() => setListDisplay(true) } className="mr-15 btn btn-reverse-primary">
