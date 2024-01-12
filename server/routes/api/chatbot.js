@@ -5,12 +5,12 @@ const  authenticateUser = require('../../middleware');
 dotenv.config();
 
 // Endpoint pour gérer les messages vers le chatbot
-router.post('/messages',authenticateUser, async (req, res) => {
+router.post('/messages', authenticateUser, async (req, res) => {
   try {
     const { input } = req.body;
 
     const apiKey = process.env.OPENAI_API_KEY || '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';
-    const apiUrl = 'https://api.openai.com/v1/engines/davinci-codex/completions';
+    const apiUrl = 'https://api.openai.com/v1/chat/completions';
 
     const response = await fetch(apiUrl, {
       method: 'POST',
@@ -25,12 +25,15 @@ router.post('/messages',authenticateUser, async (req, res) => {
     });
 
     const responseData = await response.json();
+    console.log('API Response:', responseData);
+
     res.json({ response: responseData.choices[0].text });
   } catch (error) {
-    console.error('Erreur lors de la requête à l\'API GPT-3.5:', error);
-    res.status(500).json({ error: 'Erreur lors de la requête à l\'API GPT-3.5' });
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
 
 
 

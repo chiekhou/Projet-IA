@@ -13,7 +13,7 @@ const Chatbot = () => {
   const handleSendMessage = async () => {
     try {
       const apiKey = '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';
-      const apiUrl = 'https://api.openai.com/v1/engines/davinci-codex/completions';
+      const apiUrl = 'https://api.openai.com/v1/chat/completions';
   
       const response = await fetch(apiUrl, {
         method: 'POST',
@@ -42,7 +42,7 @@ const Chatbot = () => {
       console.error('Erreur lors de la requête à l\'API GPT-3.5:', error);
     }
   };
-  
+    
 
   return (
     <div>

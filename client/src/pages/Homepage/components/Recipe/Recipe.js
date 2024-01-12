@@ -20,26 +20,32 @@ function Recipe({ recipe, updateRecipe, deleteRecipe }) {
   }
 
   return (
-    <div  className={styles.recipe}>
-      <i onClick={handleClickDelete} className="fa-solid fa-xmark"></i>
-      {/* <div className={styles.imageContainer}>
-        <img src={recipe.image} alt="recipe" />
-      </div> */}
+    <div className={styles.recipe}>
+      {/* ... autres éléments de la recette */}
       <div
         className={`d-flex flex-column justify-content-center align-items-center`}
       >
         <h3 className="mb-10">{recipe.recipeName}</h3>
         <h3 className="mb-10">{recipe.description}</h3>
         {user ? (
-        <i onClick={handleClickLike} 
-          className={`${styles.recipeName} fa-solid fa-heart ${recipe.liked ? "text-primary" : ""}`}
-        ></i>
-         ) : ( 
-          <Link to="login" className="mr-15 btn btn-reverse-primary" > 
-          <i className="fa-solid fa-heart mr-5"></i>
-          <span>Favoris</span>
-        </Link>
-       )} 
+          <>
+            <i
+              onClick={handleClickLike}
+              className={`${styles.recipeName} fa-solid fa-heart ${
+                recipe.liked ? 'text-primary' : ''
+              }`}
+            ></i>
+            <Link to={`/recipe/${recipe.id_recipe}`} className="btn btn-reverse-primary">
+              <i className="fa-solid fa-comment mr-5"></i>
+              <span>Notation et Avis</span>
+            </Link>
+          </>
+        ) : (
+          <Link to="login" className="mr-15 btn btn-reverse-primary">
+            <i className="fa-solid fa-heart mr-5"></i>
+            <span>Favoris</span>
+          </Link>
+        )}
       </div>
     </div>
   );

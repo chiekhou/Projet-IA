@@ -6,9 +6,8 @@ import App from "./App";
 import ProtectedRoute from "./components/ProtectedRoute.js/ProtectedRoute";
 import Chatbot from "./components/Chatbot/Chatbot";
 import RatingAndReview from "./components/RatingAndReview/RatingAndReview";
-
-// Importez le composant RecipeDetails pour afficher les détails d'une recette
-// const RecipeDetails = lazy(() => import("./pages/RecipeDetails/RecipeDetails"));
+import RecipeDetails from './components/RecipeDetails/RecipeDetails';
+// import RecipeDetailsPage from './pages/Homepage/components/RecipeDetailsPage/RecipeDetailsPage';
 
 const Homepage = lazy(() => import("./pages/Homepage/Homepage"));
 const Login = lazy(() => import("./pages/Login/Login"));
@@ -140,14 +139,30 @@ export const router = createBrowserRouter([
           },
         ],
       },
+      // {
+      //   path: "recipe/:recipeId",
+      //   element: (
+      //     <ProtectedRoute>
+      //       <RatingAndReview />
+      //     </ProtectedRoute>
+      //   ),
+      // }, 
       {
-        path: "recipe/:recipeId",
+        path: 'recipe/:recipeId',
         element: (
           <ProtectedRoute>
-            <RatingAndReview />
+            <RecipeDetails />
           </ProtectedRoute>
         ),
-      },      
+      }, 
+      // {
+      //   path: "recipe-details/:recipeId",
+      //   element: (
+      //     <ProtectedRoute>
+      //       <RecipeDetailsPage />
+      //     </ProtectedRoute>
+      //   ),
+      // },    
     ],
   },
 ]);
