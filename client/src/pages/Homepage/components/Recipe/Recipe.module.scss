@@ -2,7 +2,7 @@
   position: relative;
   border-radius: 20px;
   height: 400px;
-  cursor: pointer;
+
   > i {
     position: absolute;
     top: 10px;
@@ -20,10 +20,8 @@
     font-size: 20px;
   }
   &:hover {
-    img {
-      transform: scale(1.1);
-    }
-    .recipeTitle {
+  
+    .recipeName {
       color: var(--primary);
     }
   }
@@ -40,10 +38,9 @@
   }
 }
 
-.recipeTitle {
-  height: 100px;
+.recipeName {
+  height: 20px;
   transition: 0.2s color;
-  border: 1px solid var(--gray-2);
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+  border: 1px transparent var(--gray-2);
+
 }

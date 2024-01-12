@@ -7,6 +7,7 @@ function Search({ setFilter }) {
   }
 
   return (
+    
     <div
       className={`d-flex flex-row justify-content-center align-items-center my-30 ${styles.searchBar}`}
     >

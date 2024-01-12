@@ -4,26 +4,40 @@ import { useState } from "react";
 import Loading from "../../components/Loading/Loading";
 import Search from "./components/Search/Search";
 import { useFetchRecipes } from "../../hooks";
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import {
+  selectFilteredRecipes,
+  recipesState,
+} from '../../state';
 import { updateRecipe as updateR, deleteRecipe as deleteR } from "../../apis";
+
 
 function Homepage() {
   const [filter, setFilter] = useState("");
   const [page, setPage] = useState(1);
-  const [[recipes, setRecipes], isLoading] = useFetchRecipes(page);
+  const [isLoading] = useFetchRecipes(page);
+  const recipes = useRecoilValue(selectFilteredRecipes(filter));
+  const setRecipes = useSetRecoilState(recipesState);
+
+
+
 
   async function updateRecipe(updatedRecipe) {
     const savedRecipe = await updateR(updatedRecipe);
+    console.log(savedRecipe)
     setRecipes(
-      recipes.map((r) => (r._id === savedRecipe._id ? savedRecipe : r))
+      recipes.map((r) => (r.id_recipe === savedRecipe.id_recipe ? savedRecipe : r))
+      
     );
   }
 
-  async function deleteRecipe(_id) {
-    await deleteR(_id);
-    setRecipes(recipes.filter((r) => r._id !== _id));
+  async function deleteRecipe(id_recipe) {
+    await deleteR(id_recipe);
+    setRecipes(recipes.filter((r) => r.id_recipe !== id_recipe));
   }
 
   return (
+    <>
     <div className="flex-fill container d-flex flex-column p-20">
       <h1 className="my-30">
         Découvrez nos nouvelles recettes{" "}
@@ -34,14 +48,15 @@ function Homepage() {
       >
         <Search setFilter={setFilter} />
         {isLoading && !recipes.length ? (
+          
           <Loading />
         ) : (
           <div className={styles.grid}>
             {recipes
-              .filter((r) => r.title.toLowerCase().startsWith(filter))
+              .filter((r) => r.recipeName.toLowerCase().startsWith(filter))
               .map((r) => (
                 <Recipe
-                  key={r._id}
+                  key={r.id_recipe}
                   recipe={r}
                   deleteRecipe={deleteRecipe}
                   updateRecipe={updateRecipe}
@@ -56,6 +71,10 @@ function Homepage() {
         </div>
       </div>
     </div>
+
+</>
+    
+    
   );
 }
 

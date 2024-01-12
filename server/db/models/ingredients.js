@@ -9,7 +9,7 @@ const {
        * The `models/index` file will call this method automatically.
        */
       static associate(models) {
-
+        Ingredients.hasMany(models.Quantite, { foreignKey: 'ingredientId' });
       }
     }
     Ingredients.init({
@@ -19,9 +19,6 @@ const {
             autoIncrement: true,
         },
       ingredientName: DataTypes.STRING,
-      description: DataTypes.STRING,
-      quantite: DataTypes.INTEGER,
-      uniteMesure: DataTypes.STRING
     }, {
       sequelize,
       modelName: 'Ingredients',

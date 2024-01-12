@@ -21,6 +21,7 @@ const {
       allergies: DataTypes.STRING,
       medicalConditions: DataTypes.STRING,
       regimeAlimentaire: DataTypes.STRING,
+      autre: DataTypes.STRING,
     }, {
       sequelize,
       modelName: 'Preferences',

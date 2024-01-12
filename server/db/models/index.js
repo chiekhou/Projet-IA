@@ -6,9 +6,11 @@ const user = require("./user");
 const preference = require("./preferences");
 const recipes = require("./recipes");
 const ingredients = require("./ingredients");
+const quantite = require("./quantite");
 const commentaire = require("./commentaire");
-const recommandation = require("./recommandations");
-const evaluation = require("./evaluation");
+const usersRecipes = require("./user-recipe");
+const commentaireUsersRecipes = require("./commentaireUserRecipes");
+
 const db = {};
 
 let sequelize;
@@ -28,11 +30,12 @@ if (config.use_env_variable) {
 const modelExports = [
   user,
   recipes,
-  recommandation,
-  evaluation,
+  usersRecipes ,
   commentaire,
   ingredients,
-  preference
+  preference,
+  quantite,
+  commentaireUsersRecipes
 ];
 
 modelExports.forEach((exportedModel) => {
