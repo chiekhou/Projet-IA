@@ -88,8 +88,9 @@ const RecipeDetails = () => {
            
         </div>
       </div>
+      {recommendations && recommendations[0].recommandations.length > 0 && (
       <div className={`${styles.test}`}>
-        
+        <h5>Recommandations</h5>
         {recommendations && recommendations[0].recommandations.map((recommendation, index) => (
           
      <div className={`${styles.contentCardRecommandation}`}>
@@ -106,7 +107,7 @@ const RecipeDetails = () => {
         ))}
     
     </div>
-
+      )}
       <div>
       
       </div>

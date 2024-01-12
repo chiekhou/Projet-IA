@@ -59,6 +59,7 @@ function Chatbot() {
         <form className="form-horizontal" onSubmit={handleSubmit}>
           <div className="form-group row">
             <div className="">
+            <h4 className="mb-20">Chat</h4>
               <div className="form-floating">
                 <input
                   className={styles.size}
@@ -72,7 +73,7 @@ function Chatbot() {
               </div>
             </div>
             <div className="text-center">
-              <button type="submit" className="btn btn-primary custom-button">Submit</button>
+              <button type="submit" className="btn btn-primary btn-block">Submit</button>
             </div>
           </div>
         </form>
