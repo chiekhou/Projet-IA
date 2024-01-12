@@ -29,8 +29,11 @@ function Recipe({ recipe, updateRecipe, deleteRecipe }) {
   return (
     <div  className={styles.recipe}>
       <i onClick={handleClickDelete} className="fa-solid fa-xmark"></i>
+     
       <div onClick={handleClickRecipeDetails} className={styles.imageContainer}>
+      <Link>
       <img src={data[recipe.id_recipe - 1].image} alt={`Image ${recipe.id_recipe}`} />
+      </Link>
       </div>
       <div
         className={`d-flex flex-column justify-content-center align-items-center`}
