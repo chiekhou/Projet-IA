@@ -1,5 +1,6 @@
 .chat-page{
     height: 100vh;
+   
 }
 
 .selected{
@@ -7,14 +8,11 @@
 }
 
 .size{
-    width: 100%;
-    margin-top: 230px;
+ 
+    margin-top: 220px;
 }
 
-.button{
-    width: 100%;
-   
-}
+
   
 
 .container {
@@ -35,15 +33,17 @@
     height: 400px;
     margin-right: 20px;
     margin-bottom: 20px;
-    background: white;
+    background-color: white;
     border-radius: 20px;
     padding: 20px;
     box-shadow: var(--box-shadow);
     border: var(--border);
     overflow-y: auto;
     animation: appear 200ms;
-
+    position: relative;
 }
+
+
 
 @keyframes appear {
     from {
