@@ -24,4 +24,3 @@ services:
       ADMINER_DEFAULT_PORT: 5432
       ADMINER_DEFAULT_DB: ${POSTGRES_DB:-database}
 
-   
